@@ -1,0 +1,99 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      <h1>{{ vm.pageHeader.title }}</h1>
+      <h3>{{ vm.pageHeader.description }}</h3>
+      <div>{{ vm.message }}</div>
+    </div>
+  </div>
+  <br/>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-offset-2 col-sm-8 col-lg-offset-3 col-lg-6">
+      <div ng-repeat="result in vm.data.result" class="panel panel-primary">
+
+        <div class="panel-heading">
+          <form class="form-horizontal">
+            <span class="glyphicon glyphicon-list"></span>
+            <span>{{ result.name }}</span>
+            <div class="btn-group cell-action-panel-heading">
+              <button ng-click="showListInput = !showListInput" type="button" class="btn btn-primary">
+              <span class="glyphicon glyphicon-pencil">
+              </span>
+              </button>
+              <button ng-click="vm.deleteList($index)" type="button" class="btn btn-primary">
+                <span class="glyphicon glyphicon-trash"></span>
+              </button>
+            </div>
+            <div ng-show="showListInput" class="form-group">
+              <input maxlength="30" ui-keypress="{'enter': 'vm.updateList({name:newName, index:$index, data:result})'}"
+                     ng-model="newName" class="form-control" type="text" placeholder="new list name">
+            </div>
+          </form>
+        </div>
+
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="input-group">
+                <input ui-keypress="{'enter': 'vm.newTask({taskName:taskName, id:result._id, result:result})'}"
+                       ng-model="taskName" type="text" class="form-control" placeholder="Enter a name for the new task">
+                <span class="input-group-btn">
+                      <button ng-click="vm.newTask({taskName:taskName, id:result._id, result:result})"
+                              class="btn btn-success" type="submit">Add task</button>
+                    </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <table class="table table-bordered table-hover">
+          <tr ng-repeat="oneTask in result.tasks">
+            <td><input type="checkbox" ng-checked="oneTask.status" ng-click="vm.changeStatus({data:result, index:$index})"></td>
+            <td class="edited">
+              <p class="{{oneTask.status}}" ng-hide="showTaskInput">{{ oneTask.taskName }}</p>
+              <div ng-show="showTaskInput" class="form-group forTask">
+                <input ui-keypress="{'enter': 'vm.updateTask({newTaskName:newTaskName, data:result, index:$index})'}"
+                       ng-model="newTaskName" class="form-control forInputTask" type="text" placeholder="new task name">
+              </div>
+            </td>
+            <td class="cell-action">
+              <div class="btn-group btn-group-justified" >
+                <div class="btn-group">
+                  <button ng-disabled="oneTask.status" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" ng-init="thisTask = oneTask">
+                    <span class="glyphicon glyphicon-sort"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li ng-repeat="oneTask in result.tasks">
+                      <a ng-click="vm.changePriority({thisTask:thisTask, newTask:oneTask, data:result})">{{oneTask.priority+1}}</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="btn-group">
+                  <button ng-disabled="oneTask.status" ng-click="showTaskInput = !showTaskInput" type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                  </button>
+                </div>
+                <div class="btn-group">
+                  <button ng-click="vm.deleteTask({taskid:result.tasks[$index]._id, index:$index, result:result})"
+                          type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-trash"></span>
+                  </button>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="row addList">
+      <button ng-click="vm.newList()" class="btn btn-primary btn-lg" type="button">
+        <span class="glyphicon glyphicon-plus"></span>
+        <span>Add TODO list</span>
+      </button>
+  </div>
+
+</div>

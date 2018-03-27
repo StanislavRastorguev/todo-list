@@ -1,0 +1,113 @@
+body {
+  padding: 2%;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #D1CDC1;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.table > tbody > tr td:last-child {
+  width: 115px;
+}
+
+.table > tbody > tr td:first-child {
+  width: 30px;
+  text-align: center;
+}
+
+.table > tbody > tr > td {
+  max-width: 450px;
+  padding: 0;
+  vertical-align: middle;
+  height: 40px;
+}
+
+.table > tbody > tr > td > p {
+  margin-bottom: 0;
+  margin-left: 1%;
+}
+
+.table > tbody > tr > td > p.complete {
+  color: grey;
+  text-decoration: line-through;
+  font-style: italic;
+}
+
+.table > tbody > tr > td.cell-action > div {
+  display: none;
+}
+
+.table > tbody > tr:hover > td.cell-action > div {
+  display: table-cell;
+}
+
+.panel-heading > form > div.btn-group {
+  display: none;
+}
+
+.panel-heading > form:hover > div.btn-group {
+  display: table-cell;
+}
+
+.panel-heading {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  vertical-align: middle;
+  line-height: 36px;
+}
+
+.panel-heading > form > div.form-group {
+  margin: 5px;
+}
+
+.btn-group.cell-action-panel-heading {
+  float: right;
+}
+
+.cell-action .btn {
+  border: none;
+  border-radius: 0 !important;
+  padding-top: 10px;
+  padding-bottom: 9px;
+  background: transparent;
+}
+
+.cell-action .btn:hover {
+  background: #5555552e;
+}
+
+.cell-action-panel-heading .btn {
+  border: none;
+  border-radius: 0 !important;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background: transparent;
+}
+
+.cell-action-panel-heading .btn:hover {
+  background: #5555552e;
+}
+
+div.addList {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.forTask {
+  margin: 0;
+}
+
+.forInputTask {
+  vertical-align: middle;
+  height: 39px;
+  border: 0;
+  border-radius: 0;
+}
+
+p.true {
+  color: grey;
+  text-decoration: line-through;
+  font-style: italic;
+}
